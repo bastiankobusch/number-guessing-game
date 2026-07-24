@@ -1,51 +1,46 @@
 import random
 
 def spiel ():
-    print("Willkommen beim Spiel des Zahlenratens")
+    print("Welcome to: Guess the number!")
     print()
-    print("Ich überlege mir eine Zahl zwischen 1 bis 10.\n\n")
+    print("I have picked a random number between (1-10) for you to guess.\n\n")
 
-    # Computer wählt zufällige Zahl
-    zahl = random.randint(1, 10)
+    # Bot chooses random number
+    number = random.randint(1, 10)
 
-    versuche = 3 #Einstellung Anzahl Versuche
+    Try_count = 3 #Setting for amount of tries
 
-    #Spielschleife
-    while versuche > 0:
+    #Gameloop
+    while Try_count > 0:
         try:
-            eingabe = int(input("Deine Zahl zwischen (1-10) "))
+            user_input = int(input("Your guess between (1-10) "))
 
-        #Eingabe überprüfen
-            if eingabe  < 1 or eingabe > 10:
-                print ("Bitte nur Zahlen zwischen 1 bis 10 eingeben!\n\n")
+        #Checking user_input
+            if user_input  < 1 or user_input > 10:
+                print ("Please input numbers from (1-10) only!\n\n")
                 continue
 
         except ValueError:
-            print("Das war keine Zahl, bitte erneut eingeben.\n\n")
+            print("It appears that wasnt a valid number, try again.\n\n")
 
-        #Zahl richtig erraten
-        if eingabe == zahl:
-            print()
-            print("Glückwunsch, du hast gewonnen!")
+        #Game logic
+        if user_input == number:
+            print("\nCongratulations, you won!")
             return
         else: 
-            versuche -= 1
+            Try_count -= 1
 
-            if eingabe < zahl:
-                print ()
-                print ()
-                print("Zu niedrig.\n\n\n")
+            if user_input < number:
+                print("\n\nToo low.\n\n\n")
 
             else:
-                print()
-                print()
-                print ("Zu hoch.\n\n\n")
+                print ("\n\nToo high.\n\n\n")
  
-            print (f"Verbleibende Versuche: {versuche}\n\n")        
+            print (f"Remaining guesses: {Try_count}\n\n")        
 
-    #Wenn Versuche aufgebraucht sind
-    print(f"Leider verloren, die richtige Zahl war {zahl}.")
+    #If try_count is 0 (Game lost)
+    print(f"Unfortunately you lost, the number was {number}.")
 
-#Spiel starten
+#Starting the game
 spiel()
-input("\n\n\nSpiel beendet. Drücke Enter zum Schließen.")
+input("\n\n\nGame over. Press Enter to close.")
